@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<HTML>
+    <head>
+      <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+      <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+      <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+      <title>Hello World</title>
+    </head>
+    <body>
+      <div id="root"></div>
+      <script type="text/babel">
+        function Header(props) {
+          console.log(props)
+          return (
+            <header>
+              <h1>{props.name}'s TODO List</h1>
+            </header>
+          )
+        } 
+        function Subhead() {
+          return (
+            <p>
+              These are my GTD for the day
+            </p>
+          )
+        }
+        function App() {
+          return(
+            <div>
+              <Header name="Jane"/>
+              <Subhead/>
+          </div>
+          )
+        }
+        ReactDOM.render(
+          <App/>,
+          document.getElementById("root")
+        )
+      </script>
+    </body>
+  </HTML>
+
+

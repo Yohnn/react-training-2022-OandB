@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<HTML>
+    <head>
+      <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+      <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+      <title>Hello World</title>
+    </head>
+    <body>
+      <div id="root"></div>
+      <script type="text/javascript">
+        let ul = React.createElement(
+          "ul",
+          { style : {color:"blue"}},
+          React.createElement("li", null, "Apple"),
+          React.createElement("li", null, "Orange"),
+          React.createElement("li", null, "Banana"),
+          React.createElement("li", null, "Grapes"),
+          React.createElement("li", null, "Guava")
+        )
+        ReactDOM.render(
+          ul,
+          document.getElementById("root")
+        )
+      </script>
+    </body>
+  </HTML>
