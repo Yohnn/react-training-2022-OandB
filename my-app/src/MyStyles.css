@@ -1,0 +1,17 @@
+@font-face {
+    font-family: GloriaHallelujah;
+    src: url(GloriaHallelujah-Regular.woff);
+}
+
+.MyButton {
+    background-color: #faf7f2;
+    outline-color: #faf7f2;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin-bottom: 10px;
+}
+
+.MyListItem {
+    font-family:fantasy;
+    font-size: 20px;
+    font-weight:bold;
+}

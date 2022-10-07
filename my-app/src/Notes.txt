@@ -1,0 +1,1588 @@
+
+// App.js (class based component)
+
+import {Component} from "react";
+import React from "react";
+
+
+class App extends Component {
+
+  render() {
+    return(
+        <React.Fragment>
+          <h1>TODO List</h1>
+          <Subheader name="John" lastname="Doe"/>
+        </React.Fragment>
+    );
+  }
+}
+
+class Subheader extends  {
+
+  constructor() {
+    super()
+    console.log(this.props);
+  }
+
+  render() {
+    console.log(this.props);
+    return(
+        <h2>{this.props.name} {this.props.lastname}'s GTD for today</h2>
+    );
+  }
+}
+
+export default App;
+
+//------------------------
+
+// EventSample
+
+import {Component} from "react";
+import React from "react";
+
+
+class EventSample extends Component {
+
+  // handleClick() {
+  //   console.log("another click");
+  // }
+
+  constructor() {
+    super()
+    this.counter = 0;
+  }
+
+  handleClick = (e) => {
+    console.log(this.counter++);
+  }
+
+  render() {
+    return(
+      <React.Fragment>
+        <button className="btn btn-outline-dark" onClick={this.handleClick}>+</button>
+      </React.Fragment>
+    );
+  }
+}
+
+export default EventSample;
+
+//-------------------------
+
+// InputSample.js
+
+import {Component} from "react";
+
+class InputSample extends Component {
+
+
+  constructor() {
+    super();
+
+    this.someName = "";
+  }
+
+  getValue = (e) => {
+    this.someName = e.target.value;
+  }
+
+  clickHandler = () => {
+    console.log(this.someName);
+  }
+
+  render() {
+    console.log(this.someName);
+    return (
+        <div>
+          <input type="text" onChange={this.getValue}/>
+          <button onClick={this.clickHandler}>Click</button>
+        </div>
+    );
+  }
+}
+
+export default InputSample;
+
+//-------------------------
+
+GCF Algo
+
+1. Identify the big number and small number
+2. var rem  = big number % small number
+3. if the rem == 0; we already found the GCF = small number
+4. if rem <> 0 
+4.1   big number = small number
+4.2.  small number = rem 
+5 go back step 2
+
+//// ------------------------
+
+// GCF Solution
+
+import {Component} from "react";
+
+class InputSample extends Component {
+
+
+  constructor() {
+    super();
+
+    this.fno = 0;
+    this.sno = 0;
+  }
+
+  getFirstNo = (evt) => {
+    this.fno = evt.target.value;
+  }
+
+  getSecondNo = (evt) => {
+    this.sno = evt.target.value;
+  }
+
+  clickHandler = () => {
+
+    let bigno = 0;
+    let smallno = 0;
+    let rem = 1;
+
+    if(this.fno > this.sno) {
+      bigno = this.fno;
+      smallno = this.sno;
+    }
+    else {
+      bigno = this.sno;
+      smallno = this.fno;
+    }
+
+    while((rem = bigno % smallno) != 0) {
+      bigno = smallno;
+      smallno = rem;
+    }
+
+    console.log(`GCF = ${smallno}`);
+
+  }
+
+  render() {
+    return (
+        <div>
+          <input type="number" onChange={this.getFirstNo} className="form-control" id="one"/>
+          <input type="number" onChange={this.getSecondNo} className="form-control" id="two"/>
+          <button onClick={this.clickHandler} className="btn btn-outline-dark">Get GCF</button>
+        </div>
+    );
+  }
+}
+
+export default InputSample;
+
+/// ------------------------------
+// GCF Solution, with state and setState
+
+import {Component} from "react";
+
+class InputSample extends Component {
+
+
+  constructor() {
+    super();
+
+    this.fno = 0;
+    this.sno = 0;
+
+    this.state = {gcf:0, isItVisible:"hidden"};
+
+  }
+
+  getFirstNo = (evt) => {
+    this.fno = evt.target.value;
+  }
+
+  getSecondNo = (evt) => {
+    this.sno = evt.target.value;
+  }
+
+  clickHandler = () => {
+
+    let bigno = 0;
+    let smallno = 0;
+    let rem = 1;
+
+    if(this.fno > this.sno) {
+      bigno = this.fno;
+      smallno = this.sno;
+    }
+    else {
+      bigno = this.sno;
+      smallno = this.fno;
+    }
+
+    while((rem = bigno % smallno) != 0) {
+      bigno = smallno;
+      smallno = rem;
+    }
+
+    console.log(`GCF = ${smallno}`);
+    this.setState({gcf:smallno, isItVisible:"visible"})
+  }
+
+  render() {
+    return (
+        <div>
+          <input type="number" onChange={this.getFirstNo} className="form-control" id="one"/>
+          <input type="number" onChange={this.getSecondNo} className="form-control" id="two"/>
+          <button onClick={this.clickHandler} className="btn btn-outline-dark">Get GCF</button>
+          <div style={{visibility: this.state.isItVisible}}>{this.state.gcf}</div>
+        </div>
+    );
+  }
+}
+
+export default InputSample;
+
+/// ---------------
+
+// StateSample
+
+import {Component} from "react";
+import React from "react";
+
+class StateSample extends Component {
+
+  constructor() {
+    super();
+
+    this.state = {name: "John Doe", employeeStatus: "employed"}
+    console.log(this.state);
+  }
+
+
+  handleClick = () => {
+    this.setState({name: "James Smith"});
+    console.log(this.state);
+  }
+
+
+  render(){
+    return(
+        <React.Fragment>
+          <button onClick={this.handleClick}>Click me</button>
+
+          <div>{this.state.name}</div>
+        </React.Fragment>
+    );
+  }
+}
+
+export default StateSample;
+
+//------------------------
+
+// if you need to reach me over the weekend, I can be reached
+// at ted@thelogbox.com or tedhagos@gmail.com
+
+// --------------
+// StateCounter
+
+import {Component} from "react";
+import React from "react";
+
+
+/**
+ * 1. Update the value of COUNT (display)
+ * 2. Increment by 3
+ * 3. Decrement by 2
+ * 4. Put boundaries, the value of count cannot be < -10 and cannot be > 50
+ * */
+
+class StateCounter extends Component {
+
+
+  render() {
+    return(
+        <React.Fragment>
+          <button>+</button>
+          <button>-</button>
+          <div>COUNT : </div>
+        </React.Fragment>
+    );
+  }
+}
+
+export default StateCounter;
+
+// ------------------------
+
+// HigherLower.js
+
+import {Component} from "react";
+
+/**
+ * 1. Accept the input of the user
+ * 2. Compare the user input to the numToGuess
+ * 3. If the user guessed the number correctly, update the div ("you guessed wrong") to "Right guess"
+ * 3.1 If the guess is incorrect, tell the user if the guess is higher or lower than numToGuess
+ *
+ * */
+
+
+class HigherLower extends Component {
+
+  constructor() {
+    super();
+
+    this.state =  {numToGuess: 37};
+
+  }
+
+  render() {
+    return (
+        <div>
+          <input type="number" placeholder="guess the number" className="form-control" id="cm"/>
+          <button className="btn btn-outline-dark">Guess</button>
+          <div>You guessed wrong</div>
+        </div>
+    );
+  }
+}
+
+export default HigherLower;
+///-----------------------------
+
+// Converter.js
+
+import {Component} from "react";
+
+/**
+ * Controlled input in React
+ *
+ * When a user inputs a value in CM, (use the onChange even), the value in the inches input area
+ * calculates automatically -- and vice versa.
+ * */
+
+
+class Converter extends Component {
+
+
+
+  render() {
+    return (
+        <div>
+          <input type="number" placeholder="centimeters" onChange={this.getFirstNo} className="form-control" id="cm"/>
+          <input type="number" placeholder="inches" onChange={this.getSecondNo} className="form-control" id="inches"/>
+        </div>
+    );
+  }
+}
+
+export default Converter;
+// ------------------------------
+
+// Sep 26 Session
+
+
+//Solution to Converter exercise
+
+import {Component} from "react";
+import React from "react";
+
+class StateCounter extends Component {
+
+  constructor() {
+    super();
+
+    this.state = {count:0};
+    console.log(this.state);
+
+    StateCounter.UPPER_LIMIT = 50;
+    StateCounter.LOWER_LIMIT = -10;
+
+  }
+
+  increaseCount = (evt) => {
+    if(this.state.count <= StateCounter.UPPER_LIMIT) {
+      this.setState({count: this.state.count + 2})
+    }
+    console.log(this.state);
+  }
+
+  decreaseCount = () => {
+    if(this.state.count >= StateCounter.LOWER_LIMIT) {
+      this.setState({count: this.state.count - 3})
+    }
+  }
+  render() {
+    return(
+        <React.Fragment>
+          <button
+            onClick={this.increaseCount}
+          >+</button>
+          <button
+            onClick={this.decreaseCount}
+          >-</button>
+          <div>COUNTER : {this.state.count}</div>
+        </React.Fragment>
+    );
+  }
+}
+
+export default StateCounter;
+
+// Converter example
+// Using non-fat arrow syntax for functions
+// and binding the functions to the StateCounter component
+
+import {Component} from "react";
+import React from "react";
+
+class StateCounter extends Component {
+
+  constructor() {
+    super();
+
+    this.state = {count:0};
+    console.log(this.state);
+
+    StateCounter.UPPER_LIMIT = 50;
+    StateCounter.LOWER_LIMIT = -10;
+
+    this.increaseCount = this.increaseCount.bind(this);
+
+  }
+
+   increaseCount(evt) {
+    if(this.state.count <= StateCounter.UPPER_LIMIT) {
+      this.setState({count: this.state.count + 2})
+    }
+    console.log(this.state);
+  }
+
+  decreaseCount = () => {
+    if(this.state.count >= StateCounter.LOWER_LIMIT) {
+      this.setState({count: this.state.count - 3})
+    }
+  }
+  render() {
+    return(
+        <React.Fragment>
+          <button
+            onClick={this.increaseCount}
+          >+</button>
+          <button
+            onClick={this.decreaseCount}
+          >-</button>
+          <div>COUNTER : {this.state.count}</div>
+        </React.Fragment>
+    );
+  }
+}
+
+export default StateCounter;
+
+///-------------------------
+
+// Solution to HigherLower.js
+//
+
+import {Component} from "react";
+
+
+class HigherLower extends Component {
+
+  constructor() {
+    super();
+
+    this.tempNumber = 0;
+    this.state =  {numToGuess: 37, output: ""};
+
+  }
+
+  getValue = (e) =>  {
+    this.tempNumber = parseInt(e.target.value);
+    console.log(this.tempNumber);
+  }
+
+  handleClick = () => {
+    if (this.tempNumber == this.state.numToGuess) {
+      console.log("Guessed the number already");
+      this.setState({output: "You guessed it correctly"});
+    }
+    else {
+      if (this.tempNumber > this.state.numToGuess) {
+        this.setState({output: "Wrong guess. Pick a lower number"});
+      }
+      else {
+        this.setState({output: "Wrong guess. Pick a higher number"});
+      }
+    }
+  }
+
+  render() {
+    return (
+        <div>
+          <input type="number"
+                 onChange={this.getValue}
+                 placeholder="guess the number"
+                 className="form-control"
+          />
+          <button className="btn btn-outline-dark"
+                  onClick={this.handleClick}>Guess</button>
+          <div>{this.state.output}</div>
+        </div>
+    );
+  }
+}
+
+export default HigherLower;
+//----------------------
+
+// HookSample.js
+// using hooks with functional components
+// using useState() hook
+
+import {useState} from "react";
+
+
+function HookSample() {
+
+  const [count, setCount] = useState(0);
+
+  function handleClick(evt) {
+    setCount(count + 1);
+  }
+
+  return(
+      <div>
+        <p>You clicked  times</p>
+        <button onClick={handleClick}>
+          Click me
+        </button>
+        <p>{`COUNT: ${count}`}</p>
+      </div>
+  );
+}
+
+export default HookSample;
+////--------------------------
+// Function As Abstractions
+
+<html>
+  <script>
+    
+
+    var work = function() {
+      console.log("Working hard");
+    }
+
+    var doWork = function(f) {
+      console.log("Before invoking the function. pre log");
+      f();
+      console.log("After invoking the function. post lost");
+    }
+    
+    doWork(work);
+
+
+  </script>
+</html>
+/// ---------------
+
+// StateCounterHooks.js
+/**
+ * Exercise: Complete the implementation for decreaseCount
+ * Check for lower limit before performing the operations.
+ * */
+
+import React, {useState} from "react";
+
+
+function StateCounterHooks() {
+
+  const[count, setCount] = useState(0);
+
+  // const[upperLimit, setUpperLimit] = useState(12);
+  // const[lowerLimit, setLowerLimit] = useState(-6);
+
+  const UPPER_LIMIT = 12;
+  const LOWER_LIMIT = -6;
+
+  function increaseCount() {
+    setCount(function(c){
+      if(c <= UPPER_LIMIT) {
+        c = c + 1;
+        return c;
+      }
+    });
+  }
+
+  function decreaseCount() {
+    setCount(count - 3);
+  }
+
+  return(
+      <React.Fragment>
+        <button
+            onClick={increaseCount}>+</button>
+
+        <button
+            onClick={decreaseCount}>-</button>
+        <div>COUNTER : {count} </div>
+      </React.Fragment>
+  );
+}
+
+export default StateCounterHooks;
+// --------------------
+
+// Solution to the converter exercise
+// using useRefs;
+
+import {useRef} from "react";
+
+function Converter() {
+
+  const txtCm = useRef();
+  const txtInches = useRef()
+
+  function getValueCm(e) {
+    const tempCm = parseFloat(e.target.value);
+    const mInches = tempCm / 2.54;
+    console.log(mInches);
+    txtInches.current.value = mInches;
+  }
+
+  function getValueInches(e) {
+    const tempInches = parseFloat(e.target.value);
+    const mCm = tempInches * 2.54;
+    console.log(mCm);
+    txtCm.current.value = mCm;
+  }
+
+  return (
+      <div>
+        <input type="number"
+               ref={txtCm}
+               placeholder="centimeters"
+               className="form-control"
+               onChange={getValueCm}
+               id="cm"/>
+
+        <input type="number"
+               ref={txtInches}
+               placeholder="inches"
+               className="form-control"
+               onChange={getValueInches}
+               id="inches"/>
+      </div>
+  );
+}
+
+export default Converter;
+
+// Exercise for 26 September
+// Re-implement the HigherLower exercise, using a functional
+// component -- using useState() hooks.
+
+/// Solution for HigherLowerHooks (using useState and useRef)
+
+import {useRef, useState} from "react";
+
+
+function HigherLowerHooks() {
+
+  const numToGuess = 37;
+
+  const[num, setNum] = useState(0);
+  const[output, setOutput] = useState("")
+  const txtNumInput = useRef();
+
+
+  function getValue(evt) {
+    console.log(evt.target.value);
+    setNum(parseInt(evt.target.value));
+  }
+
+  function handleClick(evt) {
+    // console.log(`numToGuess is = ${numToGuess}`);
+    // console.log(`num is = ${num}`);
+    guessTheNum();
+  }
+
+  function handleKey(evt) {
+    if (evt.key == 'Enter') {
+      guessTheNum();
+    }
+  }
+
+
+  function guessTheNum() {
+    if (numToGuess == num) {
+      setOutput( `You guessed right, it's ${num}`);
+    }
+    else {
+      if(num > numToGuess) {
+        setOutput("Pick a lower number");
+      }
+      else {
+        setOutput("Pick a higher number")
+      }
+    }
+    txtNumInput.current.value = "";
+  }
+
+  return (
+      <div>
+        <input type="number"
+               onChange={getValue}
+               onKeyDown={handleKey}
+               placeholder="guess the number"
+               className="form-control"
+               ref={txtNumInput}
+        />
+        <button className="btn btn-outline-dark"
+                onClick={handleClick}>
+          Guess
+        </button>
+        <div>{output}</div>
+      </div>
+  );
+}
+
+export default HigherLowerHooks;
+
+/// ---------------------------
+
+// Array.prototype.map() how to use
+// The map() method creates a new 
+// array populated with the results 
+// of calling a provided function on every element in the calling array.
+
+const array1 = [1, 4, 9, 16];
+
+// pass a function to map
+const map1 = array1.map(x => x * 2);
+
+array1.map(function(x){
+  return x * 2;
+});
+
+/// -----------------------------
+
+// 
+// ListSample.js
+/**
+ * - How to pass an array to a child component
+ * - How to draw an array using unordered list in JSX
+ * 
+ * */
+
+import {useEffect, useState} from "react";
+
+
+export function ListSample() {
+
+  const[fruits, setFruits] = useState([]);
+
+  useEffect(function(){
+    setFruits(["Apple","Banana","Orange"]);
+  }, []);
+
+
+  return(
+      <List items={fruits}/>
+  );
+}
+
+function List({items}) {
+  return(
+    <ul>
+      {
+        items.map(function(i){
+          return(
+              <li>{i}</li>
+          )
+        })
+      }
+    </ul>
+  );
+}
+
+/// ----------------------------------
+
+/**
+ * Sample code for useEffect
+ * 
+ * */
+
+import {useEffect, useRef, useState} from "react";
+
+
+export function UseEffect() {
+
+  const[status, setStatus] = useState("");
+  const[name, setName] = useState("John");
+
+  const txtRef = useRef();
+
+  useEffect(function(){
+    console.log("inside useEffect");
+  }, [status, name]);
+
+  function handleClickOne() {
+    setStatus("One")
+    console.log(status);
+  }
+
+  function handleClickTwo() {
+    setStatus("two")
+    console.log(status);
+  }
+
+  function getNameValue(evt) {
+
+  }
+
+  function handleKey(evt) {
+    if(evt.key == 'Enter') {
+      let temp = txtRef.current.value;
+      setName(temp);
+      txtRef.current.value = "";
+      console.log(`name = ${name}`);
+    }
+  }
+
+  return(
+      <div>
+        <h1>UseEffectSample</h1>
+        <input onKeyDown={handleKey} onChange={getNameValue} ref={txtRef} type="text"/>
+        <button onClick={handleClickOne}>One</button>
+        <button onClick={handleClickTwo}>Two</button>
+      </div>
+  )
+}
+/// ---------------------------
+
+/**
+ * 
+ * Solution to TodoList basic
+ * Using unordered lists and list items
+ * 
+ * */
+
+import {useRef, useState} from "react";
+
+
+function TodoBasicSolution() {
+
+  const[todoArr, setTodoArr] = useState([]);
+  const[todoItem, setTodoItem] = useState("");
+  const txtTodo = useRef();
+
+  function getValue(e) {
+    setTodoItem(e.target.value);
+  }
+
+  function handleKey(e) {
+    if(e.key == 'Enter') {
+      updateTodoArr();
+    }
+  }
+
+  function handleClick() {
+    updateTodoArr();
+  }
+
+  function updateTodoArr() {
+    // todoArr.push(todoItem);
+    setTodoArr( prevState => [...prevState, todoItem])
+    txtTodo.current.value = "";
+    console.log(todoArr);
+  }
+
+  return(
+      <div className="App">
+        <h1>My GTD</h1>
+        <input type="text"
+               placeholder={"type something here"}
+               onKeyDown={handleKey}
+               onChange={getValue}
+               ref={txtTodo}
+        />
+        <button onClick={handleClick}>Add</button>
+
+        <div>
+          <ul>
+            {
+              todoArr.map((todo) => {
+                return(
+                    <li>{todo}</li>
+                )
+              })
+            }
+          </ul>
+        </div>
+
+      </div>
+  );
+}
+
+export default TodoBasicSolution;
+/// ----------------------------
+
+/**
+ * Solution to TodoList, with child component
+ * (
+ *   make sure you added bootstrap to the project
+ *   and that it's imported in index.css
+ * )
+ * */
+
+import {useRef, useState} from "react";
+
+
+function TodoBasicSolution() {
+
+  const[todoArr, setTodoArr] = useState([]);
+  const[todoItem, setTodoItem] = useState("");
+  const txtTodo = useRef();
+
+  function getValue(e) {
+    setTodoItem(e.target.value);
+  }
+
+  function handleKey(e) {
+    if(e.key == 'Enter') {
+      updateTodoArr();
+    }
+  }
+
+  function handleClick() {
+    updateTodoArr();
+  }
+
+  function updateTodoArr() {
+    // todoArr.push(todoItem);
+    setTodoArr( prevState => [...prevState, todoItem])
+    txtTodo.current.value = "";
+    console.log(todoArr);
+  }
+
+  return(
+      <div className="App">
+        <h1>My GTD</h1>
+        <input type="text"
+               placeholder={"type something here"}
+               onKeyDown={handleKey}
+               onChange={getValue}
+               ref={txtTodo}
+        />
+        <button onClick={handleClick}>Add</button>
+
+        <div>
+          {
+            todoArr.map(function(todoItem) {
+              return(
+                <Todo item={todoItem}/>
+              )
+            })
+          }
+        </div>
+
+      </div>
+  );
+}
+
+
+function Todo({item}) {
+
+  return(
+      <div className="card Todo-item">
+        <div className="card-body">
+          <h5>
+            {item}
+          </h5>
+          <a href="#" className="btn btn-outline-dark">remove</a>
+          <a href="#" className="btn btn-outline-primary">mark as completed</a>
+        </div>
+
+      </div>
+  )
+}
+
+export default TodoBasicSolution;
+
+/**
+ * Routing example
+ * 
+ * Don't forget to add the react-router-dom v6 to your project
+ * npm install react-router-dom@6
+ * 
+ * */
+
+import {BrowserRouter,
+  Routes,
+  Route,
+  NavLink} from "react-router-dom";
+
+function AppTwo() {
+  return(
+      <div>
+        <BrowserRouter>
+          <nav className="navbar">
+            <NavLink to="">Home</NavLink>
+            <NavLink to="one">One</NavLink>
+            <NavLink to="two">Two</NavLink>
+            <NavLink to="three">Three</NavLink>
+          </nav>
+          <h1>Home Page</h1>
+          <Routes>
+            <Route path="/one" element={<One/>}/>
+            <Route path="/two" element={<Two/>}/>
+            <Route path="/three" element={<Three/>}/>
+          </Routes>
+        </BrowserRouter>
+      </div>
+  )
+}
+
+function One() {
+  return(
+      <div>
+        <h2>One</h2>
+      </div>
+  )
+}
+
+function Two() {
+  return(
+      <div>
+        <h2>Two</h2>
+      </div>
+  )
+}
+
+function Three() {
+  return(
+      <div>
+        <h2>Three</h2>
+      </div>
+  )
+}
+
+export default AppTwo;
+
+// FormSampleState.js
+// controlled form handling
+
+
+function FormSampleState() {
+
+  const[lastname, setLastname] = useState();
+  const[firstname, setFirstname] = useState();
+  const[email, setEmail] = useState();
+  const[formError, setFormError] = useState([]);
+
+  function submit(e) {
+    e.preventDefault();
+
+    let errCheck = areThereErrors();
+  }
+
+  function areThereErrors() {
+
+    // this is where we check
+
+
+
+    if(formError.length == 0) {
+      return false;
+    }
+    else {
+      return true;
+    }
+  }
+
+  function getFirstname(e) {
+
+  }
+
+  function getLastname(e) {
+
+  }
+
+  function getEmail(e) {
+
+  }
+
+  return(
+      <form onSubmit={submit}>
+        <div className="form-group" >
+          <input type="text"
+                 onChange={getFirstname}
+                 value={firstname}
+                 placeholder="First name"
+                 className="form-control"/>
+          <input type="text"
+                 onChange={getLastname}
+                 value={lastname}
+                 placeholder={"Last name"}
+                 className="form-control" />
+          <input type="email"
+                 onChange={getEmail}
+                 value={email}
+                 placeholder={"Email"}
+                 className="form-control"/>
+          <button type="submit">Submit</button>
+        </div>
+      </form>
+  )
+}
+
+
+/// -----
+// FormSample.js
+/**
+ * Uncontrolled form handling
+ * */
+
+import {useRef} from "react";
+
+function FormSample() {
+
+  const txtLastname = useRef();
+  const txtFirstname = useRef();
+  const txtEmail = useRef();
+
+  function submit(e) {
+    e.preventDefault();
+
+    const data = {
+      firstname: txtFirstname.current.value,
+      lastname: txtLastname.current.value,
+      email: txtEmail.current.value
+    }
+
+    console.log(data);
+    // api call to submit to an endpoint
+
+    /**
+     * 1. Check if all the fields have been filled up
+     * 2. Check if the email is proper
+     *    2.1 Only 1 @ symbol on the email
+     *    2.2 Restrict the length to 100 chars
+     *
+     *    If there are errors,
+     *    - Create an error array with the component
+     *    - push the error (text)  to the array
+     *    - console.log() the contents of all the array
+     *
+     * */
+  }
+
+  return(
+      <form onSubmit={submit}>
+        <div className="form-group" >
+          <input type="text"
+                 ref={txtFirstname}
+                 placeholder="First name"
+                 className="form-control"/>
+          <input type="text"
+                 ref={txtLastname}
+                 placeholder={"Last name"}
+                 className="form-control" />
+          <input type="email"
+                 ref={txtEmail}
+                 placeholder={"Email"}
+                 className="form-control"/>
+          <button type="submit">Submit</button>
+        </div>
+      </form>
+  )
+}
+
+export default FormSample;
+
+// -----------
+
+/**
+ * Solution for FormSampleSolution.js
+ * */
+
+import {useRef} from "react";
+import {clear} from "@testing-library/user-event/dist/clear";
+
+
+function FormSampleSolution() {
+
+  const txtFirstname = useRef();
+  const txtLastname = useRef();
+  const txtEmail = useRef();
+  const divOutput = useRef();
+
+  const errorsArr = [];
+
+  function submit(event) {
+    event.preventDefault();
+
+    console.log(`current size of error array: ${errorsArr.length}`);
+    console.log(errorsArr);
+
+    findErrors();
+
+    if(errorsArr.length > 0) {
+      // there are errors on the form
+      console.log(errorsArr);
+      divOutput.current.value = errorsArr
+    } else {
+      // this is where we submit the data
+      console.log("Success!");
+      divOutput.current.value = "Success!"
+
+      const data = {
+        firstname: txtFirstname.current.value,
+        lastname: txtLastname.current.value,
+        email: txtEmail.current.value
+      }
+      console.log(data);
+      saveDataToServer(data)
+    }
+  }
+
+  function saveDataToServer(myData) {
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(myData)
+    }
+    let prom = fetch('https://reqres.in/api/posts', requestOptions)
+
+    prom.then(response => response.json())
+    prom.then(function(resdata) {
+      console.log(resdata);
+    }).catch(function(resdata){
+      console.log(resdata);
+    });
+  }
+
+  function findErrors() {
+
+    let lastname = txtLastname.current.value;
+    let firstname = txtFirstname.current.value;
+    let email = txtEmail.current.value;
+
+    if(!lastname || !firstname || !email) {
+      // raise an error
+      errorsArr.push("Either lastname, firstname, or email is missing");
+    }
+
+    var tempEmailFltr = [...email].filter((i)=> i === '@');
+    if ((email.length > 100) || (tempEmailFltr.length !== 1)) {
+      // raise error
+      errorsArr.push("Email is not well-formed or exceeds 100 chars");
+    }
+  }
+
+  function onFieldFocus() {
+    clearFields();
+  }
+
+  function clearFields() {
+    txtFirstname.current.value = '';
+    txtLastname.current.value = '';
+    txtEmail.current.value = '';
+    // clear the errorsArr as well
+    errorsArr.length = 0;
+  }
+
+  return(
+      <form onSubmit={submit}>
+        <div className="form-group" >
+          <input type="text"
+                 onFocus={onFieldFocus}
+                 ref={txtFirstname}
+                 placeholder="First name"
+                 className="form-control"/>
+          <input type="text"
+                 ref={txtLastname}
+                 placeholder={"Last name"}
+                 className="form-control" />
+          <input type="email"
+                 ref={txtEmail}
+                 placeholder={"Email"}
+                 className="form-control"/>
+          <button type="submit">Submit</button>
+          <div ref={divOutput}></div>
+        </div>
+      </form>
+  )
+}
+
+export default FormSampleSolution;
+
+////-----
+/**
+ * code for FetchSample.js
+ * 
+ * How to use fetch() to pull data from 
+ * GitHub public API 
+ * */
+
+import {useEffect, useState} from "react";
+
+
+function FetchSample() {
+
+  const[userData, setUserData] = useState({});
+
+  useEffect(()=> {
+    const url = "https://api.github.com/users/tedhagos";
+    fetch(url)
+        .then(res => res.json())
+        .then(data =>  setUserData(data));
+
+  },[])
+
+  return(
+      <div>
+        <h1>Fetch Sample</h1>
+        <div>
+          <GitHubUser
+            name = {userData.name}
+            id = {userData.id}
+            bio = {userData.bio}
+          />
+          <pre>
+            {JSON.stringify(userData, null, 2)}
+          </pre>
+        </div>
+      </div>
+  )
+}
+
+function GitHubUser({name, id, bio}) {
+  return(
+      <div className="card">
+        <div className="card-body">
+          <h3>{name}</h3>
+           <h4>{id}</h4>
+          <p>{bio}</p>
+        </div>
+      </div>
+  )
+}
+export default FetchSample;
+/// ------------------------
+
+/**
+ * 
+ * Exercise for 28.Sep.22 (lunch time exer)
+ * Wrap FetchSample, FormSolution and TodoBasic in Routes
+ * 
+ * */  
+//--------
+
+/**
+ * Updated FetchSample - with states (loading, error, data loaded)
+ * */
+
+import {useEffect, useState} from "react";
+
+function FetchSample() {
+
+  const[userData, setUserData] = useState(null);
+  const[loading, setLoading] = useState(false);
+  const[error, setError] = useState(null);
+
+  // TODO put note (hooks) on the documentation notes
+  /**
+   * Some notes on Hooks
+   * - You can only call them from functional components (not class components)
+   * - You must write them as top level functions (as much as possible). Although it's
+   *       not a hard rule to write them inside control structures (if, while, etc)
+   *       React doesn't guarantee that they will be called (if not on top-level)
+   *
+   * */
+
+  // TODO write the useEffect -> lifecycle mapping on the training doc
+
+  useEffect(()=> {
+
+    setLoading(true);
+    const url = "https://api.github.com/users/tedhagos";
+
+    // setTimeout(function() {
+    //
+    // }, 3000)
+
+    // TODO put in the training doc -> HTTP states + CRUD and REST Mapping
+    // TODO put an explanation of Promises on the training doc
+    fetch(url)
+        .then(res => res.json())
+        .then(data =>  setUserData(data))
+        .then(() => setLoading(false))
+        .catch((error) => setError(error))
+
+  },[])
+
+
+  if(loading) return <h1>Loading</h1>
+  if(error) return <pre>{JSON.stringify(error)}</pre>
+  if(!userData) return null
+
+  return(
+      <div>
+        <h1>Fetch Sample</h1>
+        <div>
+          <GitHubUser
+            name = {userData.name}
+            id = {userData.id}
+            bio = {userData.bio}
+          />
+          <pre>
+            {JSON.stringify(userData, null, 2)}
+          </pre>
+        </div>
+      </div>
+  )
+}
+
+function GitHubUser({name, id, bio}) {
+  return(
+      <div className="card">
+        <div className="card-body">
+          <h3>{name}</h3>
+           <h4>{id}</h4>
+          <p>{bio}</p>
+        </div>
+      </div>
+  )
+}
+export default FetchSample;
+/// ----------------------------
+
+/**
+ * 
+ * useEffect vs LifeCycle methods
+ * 
+ * */
+
+import {useEffect, useState} from "react";
+
+
+function UseEffectLifeCycle() {
+
+  const[message, setMessage] = useState('');
+  const[counter, setCounter] = useState(0);
+
+  // TODO write the information about hooks ordering in the training doc
+
+  useEffect(function() {
+
+    console.log("Constructor equivalent");
+    setMessage("Constructor equivalent")
+
+    return function() {
+      console.log("Component will unmount");
+      // setMessage("Component will unmmount")
+    }
+  },[counter])
+
+
+  function handleClick() {
+    setCounter(function(c) {
+      return c = c + 1;
+    })
+  }
+
+  return(
+      <div>
+        <h1>Use Effect and LifeCycle</h1>
+        <button onClick={handleClick}>Click</button>
+        <div>{counter}</div>
+        <div>{message}</div>
+      </div>
+  )
+
+}
+
+export default UseEffectLifeCycle;
+/// -------------------
+
+/**
+ * Reducer example.
+ * */
+
+import {useReducer} from "react";
+
+
+// TODO Create another example of reducers for the TODO component
+
+function Reducer() {
+
+  function reducer(number, newNumber) {
+    return number + newNumber;
+  }
+
+  const[num, setNum] = useReducer(reducer, 0)
+
+  return(
+      <div>
+        <h1 onClick={()=> setNum(3)}>{num}</h1>
+      </div>
+  )
+}
+
+export default Reducer;
+
+/// ---------
+
+// REQUIREMENTS FOR Final Project
+
+1. Complete the TODOList basic
+2. Provide a button/link right next to the TODO item
+3. When Button is clicked (remove), update the todoList array of object
+3.1 You have to change the todoList from an array of strings, to an array of object
+
+
+
+// SUBMISSION
+
+You can submit using the following
+
+1. Via github PR (github id=tedhagos)
+2. You can use your Google Drive, upload the solution in zip, then share with me (tedhagos@gmail.com or ted@thelogbox.com)
+3. Zip, send via email
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
